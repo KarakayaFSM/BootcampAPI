@@ -5,8 +5,24 @@ dotenv.config({ path:'./config/config.env' });
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("hello from express");
+app.get('/api/v1/bootcamps', (req, res) => {
+    res.status(200).json({success: true, msg:'get All Bootcamps'});
+});
+
+app.get('/api/v1/bootcamps/:id', (req, res) => {
+    res.status(200).json({success: true, msg:`get bootcamp ${req.params.id}`});
+});
+
+app.post('/api/v1/bootcamps', (req, res) => {
+    res.status(200).json({success: true, msg:'Add Bootcamp'});
+});
+
+app.put('/api/v1/bootcamps/:id', (req, res) => {
+    res.status(200).json({success: true, msg:`Update bootcamp ${req.params.id}`});
+});
+
+app.delete('/api/v1/bootcamps/:id', (req, res) => {
+    res.status(200).json({success: true, msg:`delete bootcamp ${req.params.id}`});
 });
 
 const PORT = process.env.PORT || 5000;
