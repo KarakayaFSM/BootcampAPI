@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
 const errorHandler = require('./middleware/error');
+const async = require('./middleware/async')
 
 //load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -24,6 +25,8 @@ app.use("/api/v1/bootcamps", bootcamps);
 
 //must be below app.use to use in bootcamps controller
 app.use(errorHandler);  
+
+app.use(async);
 
 const PORT = process.env.PORT || 5000;
 
